@@ -10,8 +10,9 @@ const ListElement = ({item, index, showModal, setShowModal}) => {
       element: item,
     });
   };
+
   return (
-    <Pressable onPress={onPress}>
+    <Pressable onLongPress={onPress}>
       <View style={styles.item}>
         <Text style={styles.title}>Nombre de la planta: {item.name}</Text>
         <Text style={styles.title}>
