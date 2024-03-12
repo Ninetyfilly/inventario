@@ -8,11 +8,25 @@ import {
   Image,
   TextInput,
 } from 'react-native';
+import {addPlant} from '../../data/actions/plantActions';
 
 const AddPlant = ({modalVisible, setModalVisible}) => {
-  const [plant, setPlant] = React.useState('');
+  const [plantName, setPlantName] = React.useState('');
   const [numberOfPlants, setNumberOfPlants] = React.useState('');
   const [image, setImage] = React.useState('');
+
+  let img = {
+    uri: 'https://get.pxhere.com/photo/grass-blossom-plant-flower-herb-botany-flora-wildflower-shrub-macedonia-flowering-plant-verbena-lantana-camara-verbena-family-annual-plant-land-plant-dames-rocket-change-color-of-grass-1202434.jpg',
+  };
+
+  const loadData = () => {
+    const request = addPlant({
+      name: plantName,
+      numberOfPlants: parseInt(numberOfPlants, 10),
+      img: img.uri,
+    });
+    setModalVisible(!modalVisible);
+  };
 
   return (
     <View>
@@ -35,8 +49,8 @@ const AddPlant = ({modalVisible, setModalVisible}) => {
             </View>
 
             <TextInput
-              value={plant}
-              onChangeText={value => setPlant(value)}
+              value={plantName}
+              onChangeText={value => setPlantName(value)}
               placeholder="macedonia"
               style={styles.inputForm}
               placeholderTextColor={'white'}
@@ -44,22 +58,18 @@ const AddPlant = ({modalVisible, setModalVisible}) => {
 
             <TextInput
               value={numberOfPlants}
+              keyboardType="numeric"
               onChangeText={value => setNumberOfPlants(value)}
               placeholder="15"
               style={styles.inputForm}
               placeholderTextColor={'white'}
             />
 
-            <Image
-              style={styles.logo}
-              source={{
-                uri: 'https://get.pxhere.com/photo/grass-blossom-plant-flower-herb-botany-flora-wildflower-shrub-macedonia-flowering-plant-verbena-lantana-camara-verbena-family-annual-plant-land-plant-dames-rocket-change-color-of-grass-1202434.jpg',
-              }}
-            />
+            <Image style={styles.logo} source={img} />
 
             <Pressable
               style={[styles.button, styles.buttonAdd]}
-              onPress={() => setModalVisible(!modalVisible)}>
+              onPress={() => loadData()}>
               <Text style={styles.textStyle}>Hide Modal</Text>
             </Pressable>
           </View>

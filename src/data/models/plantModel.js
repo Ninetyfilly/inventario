@@ -3,10 +3,13 @@ import Realm from 'realm';
 class Plant extends Realm.Object {}
 Plant.schema = {
   name: 'Plant',
+  primaryKey: 'id',
+
   properties: {
+    id: 'int',
     name: 'string',
-    numberOfPlants: 'string',
-    img: 'int',
+    numberOfPlants: 'int',
+    img: 'string',
   },
 };
 

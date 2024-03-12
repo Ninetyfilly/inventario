@@ -3,6 +3,8 @@ import {Text, StyleSheet, Pressable, View} from 'react-native';
 
 const ListElement = ({item, index, showModal, setShowModal}) => {
   const onPress = () => {
+    console.log(item);
+
     setShowModal({
       visible: true,
       element: item,
@@ -11,7 +13,10 @@ const ListElement = ({item, index, showModal, setShowModal}) => {
   return (
     <Pressable onPress={onPress}>
       <View style={styles.item}>
-        <Text style={styles.title}>Hola soy el item {item.plant}</Text>
+        <Text style={styles.title}>Nombre de la planta: {item.name}</Text>
+        <Text style={styles.title}>
+          Numero de plantas: {item.numberOfPlants}
+        </Text>
       </View>
     </Pressable>
   );
@@ -30,6 +35,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 32,
+    color: 'white',
   },
 });
 export default ListElement;
